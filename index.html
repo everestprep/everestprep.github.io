@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Everest: Exam prep app for UPSC, JKSSB and SSC aspirants</title>
+<meta name="description" content="Everest is an Android app for government exam preparation. Full mock tests with an OMR simulator, cut-off predictor, current affairs, polity and history tools, and daily study tracking. Download the APK.">
+<meta property="og:title" content="Everest: Exam prep app for UPSC, JKSSB and SSC aspirants">
+<meta property="og:description" content="Mock tests, OMR simulator, current affairs, atlases and study tracking in one Android app.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#12202B">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MobileApplication","name":"Everest","operatingSystem":"Android 7.0+","applicationCategory":"EducationalApplication","description":"Exam preparation app for UPSC, JKSSB and SSC aspirants with mock tests, OMR simulator, current affairs and study tracking."}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --snow:#F5F8FA; --ink:#12202B; --slate:#51697A; --glacier:#2F6F8F; --line:#D5E0E7; --flag:#C8372D; --flag-ink:#fff; --ridge:#12202B;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif; --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--snow:#0E1A23; --ink:#EAF1F5; --slate:#9DB2C0; --glacier:#7FB6D3; --line:#243846; --ridge:#EAF1F5}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--snow);color:var(--ink);font:400 1.0625rem/1.6 var(--body);padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--glacier);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+header{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0}
+.brand{font:700 1.35rem var(--display);text-decoration:none;letter-spacing:-.01em}
+header nav a{margin-left:1.25rem;text-decoration:none;color:var(--slate);font-weight:500}
+header nav a:hover{color:var(--ink)}
+.hero{padding:3rem 0 0}
+.hero h1{font:700 clamp(2.4rem,7.5vw,4.6rem)/1.02 var(--display);letter-spacing:-.03em;margin:0 0 1.1rem;max-width:12ch}
+.hero p.lead{font-size:1.2rem;color:var(--slate);max-width:36rem;margin:0 0 1.75rem}
+.btn{display:inline-block;background:var(--flag);color:var(--flag-ink);font:600 1.1rem var(--body);padding:.95rem 1.6rem;border-radius:999px;text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+.meta{margin:.9rem 0 0;color:var(--slate);font-size:.95rem}
+.ridge{display:block;width:100%;height:auto;margin-top:2rem}
+.ridge .path{fill:none;stroke:var(--ridge);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.ridge .fill{fill:var(--glacier);opacity:.12}
+.ridge .camp{fill:var(--snow);stroke:var(--ridge);stroke-width:2.5}
+.ridge .summit{fill:var(--flag);stroke:var(--flag);stroke-width:2.5}
+.ridge text{font:500 13px var(--body);fill:var(--slate)}
+.ridge .path{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.2s ease-out .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.ridge .path{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+section{padding:4.5rem 0 0}
+h2{font:700 clamp(1.7rem,4.5vw,2.4rem)/1.1 var(--display);letter-spacing:-.02em;margin:0 0 .6rem}
+.sub{color:var(--slate);max-width:38rem;margin:0 0 2.2rem}
+.groups{display:grid;gap:2.2rem;grid-template-columns:1fr}
+@media (min-width:820px){.groups{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
+.group{border-top:2px solid var(--ink);padding-top:1rem}
+.group h3{font:700 1.25rem var(--display);margin:0 0 .8rem}
+.group ul{list-style:none;margin:0;padding:0}
+.group li{padding:.55rem 0;border-bottom:1px solid var(--line)}
+.group li b{display:block;font-weight:600}
+.group li span{color:var(--slate);font-size:.97rem}
+.steps{display:grid;gap:1.4rem;grid-template-columns:1fr;counter-reset:s;list-style:none;padding:0;margin:0}
+@media (min-width:820px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{counter-increment:s;border-top:2px solid var(--glacier);padding-top:.9rem}
+.steps li::before{content:counter(s);display:block;font:700 2rem var(--display);color:var(--glacier);line-height:1;margin-bottom:.4rem}
+.steps b{display:block;font-weight:600;margin-bottom:.2rem}
+.steps span{color:var(--slate);font-size:.97rem}
+.note{margin-top:1.6rem;color:var(--slate);font-size:.95rem;max-width:40rem}
+.final{text-align:left;padding-bottom:4rem}
+footer{border-top:1px solid var(--line);padding:1.6rem 0 2.2rem;color:var(--slate);font-size:.9rem}
+footer p{margin:.3rem 0;max-width:46rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="#top">Everest</a>
+    <nav><a href="#inside">What’s inside</a><a href="#install">Install</a></nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <h1>Climb to exam day, one camp at a time.</h1>
+      <p class="lead">Everest puts your mock tests, current affairs, revision tools and daily study goals in one Android app, built for UPSC, JKSSB and SSC aspirants.</p>
+      <a class="btn" data-apk href="#install">Download for Android</a>
+      <p class="meta">Android 7.0 or newer &middot; about 26&nbsp;MB &middot; Version 1.0</p>
+
+      <svg class="ridge" viewBox="0 0 1000 260" role="img" aria-label="A mountain ridge with camps leading to a summit">
+        <path class="fill" d="M0 240 L120 200 L260 175 L400 120 L520 135 L660 70 L800 40 L1000 20 L1000 260 L0 260Z"/>
+        <path class="path" d="M0 240 L120 200 L260 175 L400 120 L520 135 L660 70 L800 40 L1000 20"/>
+        <circle class="camp" cx="120" cy="200" r="7"/><text x="120" y="228" text-anchor="middle">Base camp</text>
+        <circle class="camp" cx="400" cy="120" r="7"/><text x="400" y="148" text-anchor="middle">Practice</text>
+        <circle class="camp" cx="660" cy="70" r="7"/><text x="660" y="98" text-anchor="middle">Revision</text>
+        <circle class="summit" cx="800" cy="40" r="9"/><text x="800" y="20" text-anchor="middle">Exam day</text>
+      </svg>
+    </div>
+
+    <section id="inside">
+      <h2>What’s inside</h2>
+      <p class="sub">Everything you need between your first topic and your last revision.</p>
+      <div class="groups">
+        <div class="group">
+          <h3>Practice</h3>
+          <ul>
+            <li><b>Full-length and sectional mock tests</b><span>Timed tests with negative marking, saved progress and detailed results.</span></li>
+            <li><b>OMR bubble-sheet simulator</b><span>Practise filling the sheet the way the real exam does.</span></li>
+            <li><b>Cut-off predictor</b><span>See how your score compares with past cut-offs.</span></li>
+            <li><b>Mistake notebook</b><span>Every wrong answer collected in one place for revision.</span></li>
+            <li><b>Mains answer writing</b><span>Practice prompts to build your answer-writing habit.</span></li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3>Learn and revise</h3>
+          <ul>
+            <li><b>Current affairs digests</b><span>Monthly capsules with quiz questions.</span></li>
+            <li><b>Static GK and polity explorer</b><span>Browse the Constitution and core concepts by topic.</span></li>
+            <li><b>Modern history timeline</b><span>Eras and milestones with a chronology game.</span></li>
+            <li><b>River and mountain atlas, map quiz</b><span>Learn geography on the map, then test yourself.</span></li>
+            <li><b>Flashcards</b><span>Quick topic cards you can rate by confidence.</span></li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3>Stay on track</h3>
+          <ul>
+            <li><b>Focus timer</b><span>Pomodoro sessions logged to your study time.</span></li>
+            <li><b>Daily goals and weekly chart</b><span>See how much you studied and what is left today.</span></li>
+            <li><b>Reminders</b><span>Morning mock drills and evening goal nudges.</span></li>
+            <li><b>Exam date alerts</b><span>Notices for exam dates and new mock tests.</span></li>
+            <li><b>Leaderboard</b><span>Compare progress with other aspirants.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="install">
+      <h2>Install in three steps</h2>
+      <p class="sub">Everest is shared as an APK file, so you install it directly from this page.</p>
+      <ol class="steps">
+        <li><b>Download the APK</b><span>Tap the button below and save the file to your phone.</span></li>
+        <li><b>Open the file</b><span>If Android asks, allow installs from your browser or file manager, then tap Install.</span></li>
+        <li><b>Open Everest</b><span>Sign up, pick your target exam and start your first mock test.</span></li>
+      </ol>
+      <p class="note">Because Everest is not on the Play Store yet, Android or Play Protect may show a warning before installing. Choose “Install anyway” if you downloaded the file from this page.</p>
+    </section>
+
+    <section class="final">
+      <h2>Ready to start climbing?</h2>
+      <p class="sub">Download Everest and take your first mock test today.</p>
+      <a class="btn" data-apk href="#install">Download for Android</a>
+      <p class="meta">Android 7.0 or newer &middot; about 26&nbsp;MB &middot; Version 1.0</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Everest is an independent study aid. It is not affiliated with or endorsed by UPSC, JKSSB or SSC.</p>
+    <p>Questions or feedback: <a href="mailto:YOUR-EMAIL@example.com">YOUR-EMAIL@example.com</a></p>
+  </footer>
+</div>
+
+<script>
+  // Change this one line to your APK link, and every Download button on the page updates.
+  var APK_URL = "https://github.com/shahiryar08-ui/EVEREST/releases/latest/download/everest.apk";
+  document.querySelectorAll("[data-apk]").forEach(function (a) { a.href = APK_URL; });
+</script>
+</body>
+</html>
