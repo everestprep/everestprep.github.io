@@ -8,152 +8,296 @@
 <meta property="og:title" content="Everest: Exam prep app for UPSC, JKSSB and SSC aspirants">
 <meta property="og:description" content="Mock tests, OMR simulator, current affairs, atlases and study tracking in one Android app.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#12202B">
+<meta name="theme-color" content="#0A1226">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"MobileApplication","name":"Everest","operatingSystem":"Android 7.0+","applicationCategory":"EducationalApplication","description":"Exam preparation app for UPSC, JKSSB and SSC aspirants with mock tests, OMR simulator, current affairs and study tracking."}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --snow:#F5F8FA; --ink:#12202B; --slate:#51697A; --glacier:#2F6F8F; --line:#D5E0E7; --flag:#C8372D; --flag-ink:#fff; --ridge:#12202B;
+  --bg:#F4F7FB; --text:#0F1B2D; --muted:#566880; --line:#D9E2EC; --teal:#1F7A93;
+  --night:#0A1226; --dusk:#142355; --dusk2:#1D2D63; --gold:#FFD27A; --glow:#FF9E6B; --ice:#9FDCEF;
   --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif; --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--snow:#0E1A23; --ink:#EAF1F5; --slate:#9DB2C0; --glacier:#7FB6D3; --line:#243846; --ridge:#EAF1F5}
-}
+@media (prefers-color-scheme:dark){:root{--bg:#0C1424;--text:#EAF0F8;--muted:#9FB0C6;--line:#22324A;--teal:#7CC8E0}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--snow);color:var(--ink);font:400 1.0625rem/1.6 var(--body);padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--body)}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--glacier);outline-offset:3px;border-radius:4px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 1.25rem}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:#fff;padding-top:env(safe-area-inset-top,0px);
+  background:
+   radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 28% 8%,#fff,transparent),
+   radial-gradient(1.5px 1.5px at 44% 22%,#fff,transparent),radial-gradient(1px 1px at 63% 10%,#fff,transparent),
+   radial-gradient(1.5px 1.5px at 78% 26%,#fff,transparent),radial-gradient(1px 1px at 90% 12%,#fff,transparent),
+   radial-gradient(1px 1px at 20% 34%,#fff,transparent),radial-gradient(1px 1px at 55% 36%,#fff,transparent),
+   linear-gradient(180deg,#060B1A 0%,#12204C 50%,#3A3F78 74%,#B8667A 90%,#FF9E6B 100%)}
+.glow{position:absolute;left:50%;bottom:-10%;width:90vmin;height:90vmin;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(255,200,130,.6),rgba(255,150,100,0) 62%);animation:rise 2.4s ease-out both}
+@keyframes rise{from{transform:translate(-50%,35%);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+.mtn{position:absolute;left:0;right:0;bottom:0;width:100%;height:46%;display:block}
+.hero .wrap{position:relative;z-index:2}
 header{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0}
-.brand{font:700 1.35rem var(--display);text-decoration:none;letter-spacing:-.01em}
-header nav a{margin-left:1.25rem;text-decoration:none;color:var(--slate);font-weight:500}
-header nav a:hover{color:var(--ink)}
-.hero{padding:3rem 0 0}
-.hero h1{font:700 clamp(2.4rem,7.5vw,4.6rem)/1.02 var(--display);letter-spacing:-.03em;margin:0 0 1.1rem;max-width:12ch}
-.hero p.lead{font-size:1.2rem;color:var(--slate);max-width:36rem;margin:0 0 1.75rem}
-.btn{display:inline-block;background:var(--flag);color:var(--flag-ink);font:600 1.1rem var(--body);padding:.95rem 1.6rem;border-radius:999px;text-decoration:none}
-.btn:hover{filter:brightness(1.08)}
-.meta{margin:.9rem 0 0;color:var(--slate);font-size:.95rem}
-.ridge{display:block;width:100%;height:auto;margin-top:2rem}
-.ridge .path{fill:none;stroke:var(--ridge);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
-.ridge .fill{fill:var(--glacier);opacity:.12}
-.ridge .camp{fill:var(--snow);stroke:var(--ridge);stroke-width:2.5}
-.ridge .summit{fill:var(--flag);stroke:var(--flag);stroke-width:2.5}
-.ridge text{font:500 13px var(--body);fill:var(--slate)}
-.ridge .path{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.2s ease-out .2s forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-@media (prefers-reduced-motion:reduce){.ridge .path{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+.brand{display:flex;align-items:center;gap:.55rem;font:800 1.4rem var(--display);text-decoration:none;letter-spacing:-.01em}
+header nav a{margin-left:1.4rem;text-decoration:none;color:rgba(255,255,255,.8);font-weight:500}
+header nav a:hover{color:#fff}
+.hero-grid{display:grid;gap:2.5rem;padding:2.5rem 0 11rem;align-items:center}
+@media (min-width:900px){.hero-grid{grid-template-columns:1.15fr .85fr;padding:3.5rem 0 12rem}}
+h1{font:800 clamp(2.6rem,8vw,5rem)/.98 var(--display);letter-spacing:-.035em;margin:0 0 1.2rem}
+.lead{font-size:1.2rem;color:rgba(255,255,255,.82);max-width:34rem;margin:0 0 1.8rem}
+.actions{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+.btn{display:inline-block;background:var(--gold);color:#1a1405;font:600 1.1rem var(--body);padding:1rem 1.7rem;border-radius:999px;text-decoration:none;box-shadow:0 8px 28px rgba(255,190,90,.35)}
+.btn:hover{filter:brightness(1.06)}
+.btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5)}
+.meta{margin:1rem 0 0;color:rgba(255,255,255,.7);font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+.chips span{padding:.3rem .85rem;border-radius:999px;background:rgba(255,255,255,.12);font-weight:500;font-size:.95rem}
+
+/* phone */
+.phone{width:min(270px,70vw);margin:0 auto;aspect-ratio:9/18.5;background:#F4F7FB;color:#0F1B2D;border:9px solid #05080F;border-radius:38px;box-shadow:0 30px 70px rgba(0,0,0,.5);padding:1rem .9rem;display:flex;flex-direction:column;gap:.55rem;font-size:.78rem;line-height:1.35;transform:rotate(3deg)}
+.ph-top{display:flex;justify-content:space-between;align-items:center;font-weight:600}
+.timer{background:#0A1226;color:var(--gold);padding:.2rem .6rem;border-radius:999px;font-variant-numeric:tabular-nums}
+.bar{height:5px;background:#D9E2EC;border-radius:9px;overflow:hidden}.bar i{display:block;width:12%;height:100%;background:#1F7A93}
+.q{font:700 .98rem/1.3 var(--display);margin:.2rem 0}
+.opt{padding:.55rem .7rem;border:1.5px solid #D0DAE6;border-radius:12px;background:#fff}
+.opt.sel{border-color:#1F7A93;background:#E3F3F8;font-weight:600}
+.ph-foot{margin-top:auto;display:flex;gap:.5rem}
+.ph-foot span{flex:1;text-align:center;padding:.5rem;border-radius:12px;background:#E8EEF5;font-weight:600}
+.ph-foot span:last-child{background:#0A1226;color:#fff}
+
+/* sections */
 section{padding:4.5rem 0 0}
-h2{font:700 clamp(1.7rem,4.5vw,2.4rem)/1.1 var(--display);letter-spacing:-.02em;margin:0 0 .6rem}
-.sub{color:var(--slate);max-width:38rem;margin:0 0 2.2rem}
-.groups{display:grid;gap:2.2rem;grid-template-columns:1fr}
-@media (min-width:820px){.groups{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
-.group{border-top:2px solid var(--ink);padding-top:1rem}
-.group h3{font:700 1.25rem var(--display);margin:0 0 .8rem}
-.group ul{list-style:none;margin:0;padding:0}
-.group li{padding:.55rem 0;border-bottom:1px solid var(--line)}
-.group li b{display:block;font-weight:600}
-.group li span{color:var(--slate);font-size:.97rem}
-.steps{display:grid;gap:1.4rem;grid-template-columns:1fr;counter-reset:s;list-style:none;padding:0;margin:0}
-@media (min-width:820px){.steps{grid-template-columns:repeat(3,1fr)}}
-.steps li{counter-increment:s;border-top:2px solid var(--glacier);padding-top:.9rem}
-.steps li::before{content:counter(s);display:block;font:700 2rem var(--display);color:var(--glacier);line-height:1;margin-bottom:.4rem}
-.steps b{display:block;font-weight:600;margin-bottom:.2rem}
-.steps span{color:var(--slate);font-size:.97rem}
-.note{margin-top:1.6rem;color:var(--slate);font-size:.95rem;max-width:40rem}
-.final{text-align:left;padding-bottom:4rem}
-footer{border-top:1px solid var(--line);padding:1.6rem 0 2.2rem;color:var(--slate);font-size:.9rem}
+h2{font:800 clamp(1.9rem,5vw,2.9rem)/1.05 var(--display);letter-spacing:-.025em;margin:0 0 .7rem}
+.sub{color:var(--muted);max-width:38rem;margin:0 0 2rem}
+.band{display:grid;gap:2rem;align-items:center;padding:3rem 0;border-top:1px solid var(--line)}
+@media (min-width:860px){.band{grid-template-columns:1fr 1fr;gap:4rem}.band.flip .art{order:-1}}
+.band h3{font:700 1.7rem/1.1 var(--display);letter-spacing:-.02em;margin:0 0 .6rem}
+.band p{color:var(--muted);margin:0 0 1rem;max-width:30rem}
+.band ul{margin:0;padding:0;list-style:none}
+.band li{padding:.5rem 0 .5rem 1.6rem;position:relative;border-bottom:1px solid var(--line)}
+.band li::before{content:"";position:absolute;left:0;top:1.05rem;width:.7rem;height:.7rem;border-radius:50%;background:var(--glow)}
+.band li b{font-weight:600}
+.art{background:linear-gradient(150deg,var(--dusk),var(--dusk2));border-radius:28px;padding:2rem;color:#fff;min-height:300px;display:flex;align-items:center;justify-content:center}
+
+/* omr */
+.omr{display:grid;gap:.7rem}
+.omr-row{display:flex;gap:.9rem;align-items:center}
+.omr-row i{font-style:normal;width:1.8rem;color:var(--ice);font-weight:600}
+.omr-row b{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.45);display:block}
+.omr-row b.on{background:var(--gold);border-color:var(--gold)}
+.omr-head i,.omr-head span{font-style:normal;color:var(--ice);width:26px;text-align:center;font-weight:600}
+.omr-head{display:flex;gap:.9rem;padding-left:2.7rem}
+/* timeline */
+.tl{list-style:none;margin:0;padding:0 0 0 1.4rem;border-left:2px solid rgba(255,255,255,.3);display:grid;gap:1.3rem}
+.tl li{position:relative;padding:0;border:0}
+.tl li::before{content:"";position:absolute;left:-1.95rem;top:.35rem;width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(255,210,122,.25)}
+.tl b{font:700 1.5rem var(--display);display:block;color:var(--gold)}
+.tl span{color:rgba(255,255,255,.85)}
+/* chart + ring */
+.dash{display:grid;gap:1.6rem;width:100%;max-width:340px}
+.bars{display:flex;align-items:flex-end;gap:.6rem;height:140px}
+.bars div{flex:1;text-align:center;font-size:.8rem;color:var(--ice)}
+.bars i{display:block;border-radius:8px 8px 3px 3px;background:rgba(159,220,239,.45);margin-bottom:.4rem}
+.bars .today i{background:var(--gold)}
+.ringrow{display:flex;align-items:center;gap:1.1rem}
+.ring{position:relative;width:96px;height:96px;border-radius:50%;background:conic-gradient(var(--gold) 0 240deg,rgba(255,255,255,.15) 0);flex:none}
+.ring::before{content:"";position:absolute;inset:11px;border-radius:50%;background:#1A2860}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 1.1rem var(--display)}
+.ringrow span{color:rgba(255,255,255,.85)}
+
+/* camps */
+.camps{list-style:none;margin:2.5rem 0 0;padding:0;display:grid;gap:1.5rem;grid-template-columns:1fr}
+@media (min-width:860px){.camps{grid-template-columns:repeat(4,1fr);gap:1.2rem;align-items:start}
+ .camps li:nth-child(1){margin-top:6.5rem}.camps li:nth-child(2){margin-top:4.3rem}.camps li:nth-child(3){margin-top:2.1rem}}
+.camps li{border-top:3px solid var(--teal);padding-top:.9rem;position:relative}
+.camps li::before{content:"";position:absolute;top:-9px;left:0;width:15px;height:15px;border-radius:50%;background:var(--bg);border:3px solid var(--teal)}
+.camps li:last-child{border-top-color:var(--glow)}.camps li:last-child::before{background:var(--glow);border-color:var(--glow)}
+.camps b{display:block;font:700 1.25rem var(--display);margin-bottom:.2rem}
+.camps span{color:var(--muted);font-size:.98rem}
+
+/* install */
+.install{margin-top:4.5rem;padding:4rem 0;color:#fff;background:linear-gradient(160deg,var(--night),var(--dusk) 70%,#2A3070)}
+.install .sub{color:rgba(255,255,255,.75)}
+.steps{display:grid;gap:1.5rem;grid-template-columns:1fr;list-style:none;padding:0;margin:0 0 2rem;counter-reset:s}
+@media (min-width:860px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{counter-increment:s;border-top:2px solid rgba(255,255,255,.3);padding-top:.9rem}
+.steps li::before{content:counter(s);display:block;font:800 2.4rem var(--display);color:var(--gold);line-height:1;margin-bottom:.4rem}
+.steps b{display:block;font-weight:600}.steps span{color:rgba(255,255,255,.75);font-size:.97rem}
+.note{margin:1.4rem 0 0;color:rgba(255,255,255,.7);font-size:.95rem;max-width:40rem}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:1rem 0}
+summary{cursor:pointer;font:600 1.1rem var(--body);list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--teal)}
+details[open] summary::after{content:"\2212"}
+details p{margin:.7rem 0 0;color:var(--muted);max-width:42rem}
+footer{margin-top:4rem;border-top:1px solid var(--line);padding:1.8rem 0 calc(2.4rem + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.92rem}
 footer p{margin:.3rem 0;max-width:46rem}
+@media (prefers-reduced-motion:reduce){.glow{animation:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
+
+<div class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <svg class="mtn" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path fill="#1D2D63" d="M0 360V230L140 170L260 215L420 120L560 200L700 140L860 215L1020 105L1180 190L1320 150L1440 200V360Z"/>
+    <path fill="#fff" fill-opacity=".85" d="M392 140L420 120L450 141L432 137L420 150L408 137ZM992 125L1020 105L1048 126L1032 122L1020 134L1006 122ZM682 154L700 140L720 155L708 152L700 160L692 152Z"/>
+    <path fill="#14214D" d="M0 360V270L120 230L250 260L400 190L540 250L690 200L840 260L1000 180L1160 255L1300 215L1440 250V360Z"/>
+    <path fill="#0A1226" d="M0 360V310L160 285L300 305L470 262L620 300L780 270L930 306L1090 280L1250 308L1440 290V360Z"/>
+  </svg>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#top"><svg width="30" height="26" viewBox="0 0 30 26" aria-hidden="true"><path d="M1 25L11 6L16 15L20 9L29 25Z" fill="#FFD27A"/><path d="M11 6L14 11.5L11 10L8.5 11Z" fill="#fff"/></svg>Everest</a>
+      <nav><a href="#inside">What’s inside</a><a href="#install">Install</a><a href="#faq">Questions</a></nav>
+    </header>
+    <main id="top" class="hero-grid">
+      <div>
+        <h1>Climb to exam day, one camp at a time.</h1>
+        <p class="lead">Mock tests with a real OMR sheet, current affairs, revision tools and daily goals, all in one Android app for UPSC, JKSSB and SSC aspirants.</p>
+        <div class="actions">
+          <a class="btn" data-apk href="#install">Download for Android</a>
+          <a class="btn ghost" href="#inside">See what’s inside</a>
+        </div>
+        <p class="meta">Android 7.0 or newer, about 26&nbsp;MB, version 1.0</p>
+        <div class="chips"><span>UPSC</span><span>JKSSB</span><span>SSC</span></div>
+      </div>
+      <div class="phone" role="img" aria-label="Everest mock test screen showing a timed question">
+        <div class="ph-top"><span>JKSSB mock test</span><span class="timer">01:42:18</span></div>
+        <div>Question 12 of 100</div>
+        <div class="bar"><i></i></div>
+        <div class="q">Which Article guarantees equality before the law?</div>
+        <div class="opt">A. Article 12</div>
+        <div class="opt sel">B. Article 14</div>
+        <div class="opt">C. Article 19</div>
+        <div class="opt">D. Article 21</div>
+        <div class="ph-foot"><span>Mark for review</span><span>Next</span></div>
+      </div>
+    </main>
+  </div>
+</div>
+
 <div class="wrap">
-  <header>
-    <a class="brand" href="#top">Everest</a>
-    <nav><a href="#inside">What’s inside</a><a href="#install">Install</a></nav>
-  </header>
+  <section id="inside">
+    <h2>Everything between your first topic and your last revision</h2>
+    <p class="sub">Practise like it’s the real exam, learn the syllabus your way, and keep your daily study on track.</p>
 
-  <main id="top">
-    <div class="hero">
-      <h1>Climb to exam day, one camp at a time.</h1>
-      <p class="lead">Everest puts your mock tests, current affairs, revision tools and daily study goals in one Android app, built for UPSC, JKSSB and SSC aspirants.</p>
-      <a class="btn" data-apk href="#install">Download for Android</a>
-      <p class="meta">Android 7.0 or newer &middot; about 26&nbsp;MB &middot; Version 1.0</p>
-
-      <svg class="ridge" viewBox="0 0 1000 260" role="img" aria-label="A mountain ridge with camps leading to a summit">
-        <path class="fill" d="M0 240 L120 200 L260 175 L400 120 L520 135 L660 70 L800 40 L1000 20 L1000 260 L0 260Z"/>
-        <path class="path" d="M0 240 L120 200 L260 175 L400 120 L520 135 L660 70 L800 40 L1000 20"/>
-        <circle class="camp" cx="120" cy="200" r="7"/><text x="120" y="228" text-anchor="middle">Base camp</text>
-        <circle class="camp" cx="400" cy="120" r="7"/><text x="400" y="148" text-anchor="middle">Practice</text>
-        <circle class="camp" cx="660" cy="70" r="7"/><text x="660" y="98" text-anchor="middle">Revision</text>
-        <circle class="summit" cx="800" cy="40" r="9"/><text x="800" y="20" text-anchor="middle">Exam day</text>
-      </svg>
-    </div>
-
-    <section id="inside">
-      <h2>What’s inside</h2>
-      <p class="sub">Everything you need between your first topic and your last revision.</p>
-      <div class="groups">
-        <div class="group">
-          <h3>Practice</h3>
-          <ul>
-            <li><b>Full-length and sectional mock tests</b><span>Timed tests with negative marking, saved progress and detailed results.</span></li>
-            <li><b>OMR bubble-sheet simulator</b><span>Practise filling the sheet the way the real exam does.</span></li>
-            <li><b>Cut-off predictor</b><span>See how your score compares with past cut-offs.</span></li>
-            <li><b>Mistake notebook</b><span>Every wrong answer collected in one place for revision.</span></li>
-            <li><b>Mains answer writing</b><span>Practice prompts to build your answer-writing habit.</span></li>
-          </ul>
-        </div>
-        <div class="group">
-          <h3>Learn and revise</h3>
-          <ul>
-            <li><b>Current affairs digests</b><span>Monthly capsules with quiz questions.</span></li>
-            <li><b>Static GK and polity explorer</b><span>Browse the Constitution and core concepts by topic.</span></li>
-            <li><b>Modern history timeline</b><span>Eras and milestones with a chronology game.</span></li>
-            <li><b>River and mountain atlas, map quiz</b><span>Learn geography on the map, then test yourself.</span></li>
-            <li><b>Flashcards</b><span>Quick topic cards you can rate by confidence.</span></li>
-          </ul>
-        </div>
-        <div class="group">
-          <h3>Stay on track</h3>
-          <ul>
-            <li><b>Focus timer</b><span>Pomodoro sessions logged to your study time.</span></li>
-            <li><b>Daily goals and weekly chart</b><span>See how much you studied and what is left today.</span></li>
-            <li><b>Reminders</b><span>Morning mock drills and evening goal nudges.</span></li>
-            <li><b>Exam date alerts</b><span>Notices for exam dates and new mock tests.</span></li>
-            <li><b>Leaderboard</b><span>Compare progress with other aspirants.</span></li>
-          </ul>
+    <div class="band">
+      <div>
+        <h3>Practice that feels like exam day</h3>
+        <p>Timed tests, a bubble sheet you fill the way the real paper does, and a clear view of where you lose marks.</p>
+        <ul>
+          <li><b>Full-length and sectional mock tests</b> with negative marking and saved progress</li>
+          <li><b>OMR bubble-sheet simulator</b> to build speed and accuracy</li>
+          <li><b>Cut-off predictor</b> to compare your score with past cut-offs</li>
+          <li><b>Mistake notebook</b> that collects every wrong answer for revision</li>
+          <li><b>Mains answer writing</b> prompts to build the daily habit</li>
+        </ul>
+      </div>
+      <div class="art" aria-hidden="true">
+        <div class="omr">
+          <div class="omr-head"><span>A</span><span>B</span><span>C</span><span>D</span></div>
+          <div class="omr-row"><i>1</i><b></b><b class="on"></b><b></b><b></b></div>
+          <div class="omr-row"><i>2</i><b></b><b></b><b></b><b class="on"></b></div>
+          <div class="omr-row"><i>3</i><b class="on"></b><b></b><b></b><b></b></div>
+          <div class="omr-row"><i>4</i><b></b><b></b><b class="on"></b><b></b></div>
+          <div class="omr-row"><i>5</i><b></b><b class="on"></b><b></b><b></b></div>
+          <div class="omr-row"><i>6</i><b></b><b></b><b></b><b class="on"></b></div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="install">
-      <h2>Install in three steps</h2>
-      <p class="sub">Everest is shared as an APK file, so you install it directly from this page.</p>
-      <ol class="steps">
-        <li><b>Download the APK</b><span>Tap the button below and save the file to your phone.</span></li>
-        <li><b>Open the file</b><span>If Android asks, allow installs from your browser or file manager, then tap Install.</span></li>
-        <li><b>Open Everest</b><span>Sign up, pick your target exam and start your first mock test.</span></li>
-      </ol>
-      <p class="note">Because Everest is not on the Play Store yet, Android or Play Protect may show a warning before installing. Choose “Install anyway” if you downloaded the file from this page.</p>
-    </section>
+    <div class="band flip">
+      <div>
+        <h3>Learn the syllabus, then lock it in</h3>
+        <p>Short, focused tools for the topics that keep showing up, from the Constitution to the map of India.</p>
+        <ul>
+          <li><b>Current affairs digests</b> with monthly capsules and quiz questions</li>
+          <li><b>Static GK and polity explorer</b> to browse the Constitution by topic</li>
+          <li><b>Modern history timeline</b> with a chronology game</li>
+          <li><b>River and mountain atlas</b> and a map quiz for geography</li>
+          <li><b>Flashcards</b> you can rate by how well you know them</li>
+        </ul>
+      </div>
+      <div class="art" aria-hidden="true">
+        <ol class="tl" style="list-style:none">
+          <li><b>1857</b><span>First War of Independence</span></li>
+          <li><b>1920</b><span>Non-Cooperation Movement</span></li>
+          <li><b>1942</b><span>Quit India Movement</span></li>
+          <li><b>1947</b><span>Independence</span></li>
+        </ol>
+      </div>
+    </div>
 
-    <section class="final">
-      <h2>Ready to start climbing?</h2>
-      <p class="sub">Download Everest and take your first mock test today.</p>
-      <a class="btn" data-apk href="#install">Download for Android</a>
-      <p class="meta">Android 7.0 or newer &middot; about 26&nbsp;MB &middot; Version 1.0</p>
-    </section>
-  </main>
+    <div class="band">
+      <div>
+        <h3>Stay on track every single day</h3>
+        <p>Small daily wins add up. Everest keeps your focus time, goals and reminders in one place.</p>
+        <ul>
+          <li><b>Focus timer</b> with Pomodoro sessions logged to your study time</li>
+          <li><b>Daily goals and weekly chart</b> to see what is left today</li>
+          <li><b>Reminders</b> for morning mock drills and evening goals</li>
+          <li><b>Exam date alerts</b> and notices when new mock tests arrive</li>
+          <li><b>Leaderboard</b> to compare progress with other aspirants</li>
+        </ul>
+      </div>
+      <div class="art" aria-hidden="true">
+        <div class="dash">
+          <div class="bars">
+            <div><i style="height:55px"></i>M</div><div><i style="height:80px"></i>T</div><div><i style="height:40px"></i>W</div>
+            <div><i style="height:95px"></i>T</div><div><i style="height:70px"></i>F</div><div class="today"><i style="height:110px"></i>S</div><div><i style="height:30px"></i>S</div>
+          </div>
+          <div class="ringrow"><div class="ring"><b>2h 40m</b></div><span>of your 3 hour goal done today</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Your climb, camp by camp</h2>
+    <p class="sub">A simple path from today to exam day.</p>
+    <ol class="camps">
+      <li><b>Base camp</b><span>Pick your target exam and set a daily study goal.</span></li>
+      <li><b>Practice</b><span>Take mock tests and see which topics cost you marks.</span></li>
+      <li><b>Revision</b><span>Clear your mistake notebook and flashcards every day.</span></li>
+      <li><b>Exam day</b><span>Arrive with OMR speed and a score you trust.</span></li>
+    </ol>
+  </section>
+</div>
+
+<div class="install" id="install">
+  <div class="wrap">
+    <h2>Install Everest in three steps</h2>
+    <p class="sub">Everest is shared as an APK file, so you install it straight from this page.</p>
+    <ol class="steps">
+      <li><b>Download the APK</b><span>Tap the button and save the file to your phone.</span></li>
+      <li><b>Open the file</b><span>If Android asks, allow installs from your browser or file manager, then tap Install.</span></li>
+      <li><b>Open Everest</b><span>Sign up, pick your target exam and start your first mock test.</span></li>
+    </ol>
+    <a class="btn" data-apk href="#install">Download for Android</a>
+    <p class="note">Because Everest is not on the Play Store yet, Android or Play Protect may show a warning before installing. Choose “Install anyway” if you downloaded the file from this page.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="faq">
+    <h2>Questions</h2>
+    <details><summary>Which exams is Everest built for?</summary><p>Everest is built around UPSC, JKSSB and SSC preparation, with mock tests, current affairs and revision tools for each.</p></details>
+    <details><summary>Which phones can run it?</summary><p>Any Android phone running Android 7.0 or newer.</p></details>
+    <details><summary>Why does Android show a warning when I install?</summary><p>Everest is shared directly as an APK instead of through the Play Store, so Android warns about apps from outside the store. Choose “Install anyway” only if you downloaded the file from this page.</p></details>
+    <details><summary>Do I need internet to practise?</summary><p>Most practice content is stored on your phone, so you can study offline. Signing in, syncing your progress, the leaderboard and live exam updates need a connection.</p></details>
+    <details><summary>How do I report a problem or share feedback?</summary><p>Write to us at <a href="mailto:everestapp.support@gmail.com">everestapp.support@gmail.com</a>.</p></details>
+  </section>
 
   <footer>
     <p>Everest is an independent study aid. It is not affiliated with or endorsed by UPSC, JKSSB or SSC.</p>
-    <p>Questions or feedback: <a href="mailto:YOUR-EMAIL@example.com">YOUR-EMAIL@example.com</a></p>
+    <p>Contact: <a href="mailto:everestapp.support@gmail.com">everestapp.support@gmail.com</a></p>
   </footer>
 </div>
 
