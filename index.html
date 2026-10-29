@@ -223,7 +223,7 @@ header nav{display:flex;align-items:center}
           <a class="btn" data-apk href="#install">Download for Android</a>
           <a class="btn ghost" href="#inside">See what’s inside</a>
         </div>
-        <p class="meta">Android 7.0 or newer, about 26&nbsp;MB, version 1.0</p>
+        <p class="meta">Android 7.0 or newer, about <span id="vsize">26</span>&nbsp;MB, version <span id="vtag">1.1</span></p>
         <div class="chips"><span>UPSC</span><span>JKSSB</span><span>SSC</span></div>
       </div>
       <div class="phone" role="img" aria-label="Everest mock test screen showing a timed question">
@@ -425,7 +425,7 @@ header nav{display:flex;align-items:center}
 
 <script>
   // Change this one line to your APK link, and every Download button on the page updates.
-  var APK_URL = "https://github.com/everestprep/EVEREST/releases/latest/download/Everest.apk";
+  var APK_URL = "https://github.com/everestprep/everestprep.github.io/releases/latest/download/Everest.apk";
   document.querySelectorAll("[data-apk]").forEach(function (a) { a.href = APK_URL; });
 
   // Scroll reveal, plus the Summit Expedition climb animation (runs once when it scrolls into view).
@@ -509,6 +509,18 @@ header nav{display:flex;align-items:center}
       avg.textContent = (sum / REVIEWS.length).toFixed(1) + " out of 5 from " + REVIEWS.length + (REVIEWS.length === 1 ? " review" : " reviews");
     }
   })();
+
+  // Keeps the version and file size on this page in step with your newest release.
+  try {
+    fetch("https://api.github.com/repos/everestprep/everestprep.github.io/releases/latest")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d) return;
+        if (d.tag_name) document.getElementById("vtag").textContent = d.tag_name.replace(/^v/i, "");
+        var a = (d.assets || []).filter(function (x) { return /\.apk$/i.test(x.name); })[0];
+        if (a) document.getElementById("vsize").textContent = Math.round(a.size / 1048576);
+      }).catch(function () {});
+  } catch (e) {}
 </script>
 </body>
 </html>
